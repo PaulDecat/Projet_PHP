@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HerosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/heros', [HerosController::class, 'index']);
+Route::get('/heros/{id}', [HerosController::class, 'show']);
+Route::post('/heros', [HerosController::class, 'store']);
+Route::put('/heros/{id}', [HerosController::class, 'update']);
+Route::delete('/heros/{id}', [HerosController::class, 'destroy']);
