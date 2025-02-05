@@ -15,6 +15,15 @@ class CreateHerosTable extends Migration
     {
         Schema::create('heros', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('sexe');
+            $table->string('planet');
+            $table->text('description');
+            $table->json('powers');
+            $table->string('city');
+            $table->json('gadgets');
+            $table->string('team');
+            $table->string('vehicle');
             $table->timestamps();
         });
     }
