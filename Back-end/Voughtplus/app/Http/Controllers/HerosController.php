@@ -11,18 +11,31 @@ class HerosController extends Controller
         return response()->json($Heros);
     }
 
-    public function store(){
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'sexe' => 'required|string|max:1',
+            'planet' => 'required|string|max:255',
+            'description' => 'required|string',
+            'powers' => 'required|string',
+            'city' => 'required|string|max:255',
+            'gadgets' => 'required|string|max:255',
+            'team' => 'required|string|max:255',
+            'vehicle' => 'required|string|max:255',
+        ]);
+    
         $hero = new Heros();
-        $hero->name = $request->name;
-        $hero->sexe = $request->sexe;
-        $hero->planet = $request->planet;
-        $hero->description = $request->description;
-        $hero->powers = $request->powers;
-        $hero->city = $request->city;
-        $hero->gadgets = $request->gadgets;
-        $hero->team = $request->team;
-        $hero->vehicle = $request->vehicle;
+        $hero->name = $validatedData['name'];
+        $hero->sexe = $validatedData['sexe'];
+        $hero->planet = $validatedData['planet'];
+        $hero->description = $validatedData['description'];
+        $hero->powers = $validatedData['powers'];
+        $hero->city = $validatedData['city'];
+        $hero->gadgets = $validatedData['gadgets'];
+        $hero->team = $validatedData['team'];
+        $hero->vehicle = $validatedData['vehicle'];
         $hero->save();
+    
         return response()->json([
             "message" => "Hero created"
         ], 201);
