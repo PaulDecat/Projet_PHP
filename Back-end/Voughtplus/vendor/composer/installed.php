@@ -3,13 +3,29 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => '98442d967243baf9260245542c9c9ad71f7fe119',
+=======
+        'reference' => '03ac1d37a38d55670a2d78200d17a4b4b8d6cf2c',
+>>>>>>> noe
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+<<<<<<< HEAD
+=======
+        'asm89/stack-cors' => array(
+            'pretty_version' => 'v2.2.0',
+            'version' => '2.2.0.0',
+            'reference' => '50f57105bad3d97a43ec4a485eb57daf347eafea',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../asm89/stack-cors',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> noe
         'brick/math' => array(
             'pretty_version' => '0.12.1',
             'version' => '0.12.1.0',
@@ -140,14 +156,21 @@
             'dev_requirement' => true,
         ),
         'fruitcake/laravel-cors' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v3.0.0',
             'version' => '3.0.0.0',
             'reference' => '7c036ec08972d8d5d9db637e772af6887828faf5',
+=======
+            'pretty_version' => 'v2.2.0',
+            'version' => '2.2.0.0',
+            'reference' => '783a74f5e3431d7b9805be8afb60fd0a8f743534',
+>>>>>>> noe
             'type' => 'library',
             'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
         'fruitcake/php-cors' => array(
             'pretty_version' => 'v1.3.0',
             'version' => '1.3.0.0',
@@ -157,6 +180,8 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+=======
+>>>>>>> noe
         'graham-campbell/result-type' => array(
             'pretty_version' => 'v1.1.3',
             'version' => '1.1.3.0',
@@ -406,7 +431,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => '98442d967243baf9260245542c9c9ad71f7fe119',
+=======
+            'reference' => '03ac1d37a38d55670a2d78200d17a4b4b8d6cf2c',
+>>>>>>> noe
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
