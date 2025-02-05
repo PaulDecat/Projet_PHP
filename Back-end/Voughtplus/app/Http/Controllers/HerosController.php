@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Heros;
 class HerosController extends Controller
 {
     public function index(){
