@@ -4208,3 +4208,7 @@
 #33 C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\server.php(21): require_once('...')
 #34 {main}
 "} 
+[2025-02-06 15:23:07] local.ERROR: Maximum execution time of 30 seconds exceeded {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 30 seconds exceeded at C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\vendor\\composer\\ClassLoader.php:429)
+[stacktrace]
+#0 {main}
+"} 
