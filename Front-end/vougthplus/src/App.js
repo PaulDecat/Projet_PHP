@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import AllHeros from "./AllHeros";
 import AddHero from "./AddHero";
+import DeleteHero from "./DeleteHero";
 import "./App.css";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
         <ul>
           <li><Link to="/">Accueil</Link></li>
           <li><Link to="/getHeros">Tous les héros</Link></li>
-          <li><Link to="/addHero">Ajouter un Héros</Link></li>
+          <li><Link to="/addHero">Ajouter un héros</Link></li>
+          <li><Link to="/deleteHeros">Supprimer un héros</Link></li>
         </ul>
       </nav>
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/getHeros" element={<AllHeros />} />
         <Route path="/addHero" element={<AddHero />} />
+        <Route path="/deleteHeros" element={<DeleteHero />} />
       </Routes>
     </Router>
   );

@@ -19,10 +19,18 @@ export default function AddHero() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
-        
+        event.preventDefault();
+    
+        const dataToSend = {
+            ...formData,
+            powers: formData.powers || "Aucun pouvoir",
+            gadgets: formData.gadgets || "Aucun gadget", 
+            team: formData.team || "Aucune équipe", 
+            vehicle: formData.vehicle || "Aucun véhicule", 
+        };
+    
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/heros", formData);
+            const response = await axios.post("http://127.0.0.1:8000/api/heros", dataToSend);
             console.log("Héros ajouté :", response.data);
             alert("Héros ajouté avec succès !");
             setFormData({
@@ -52,7 +60,7 @@ export default function AddHero() {
                 </div>
                 <div>
                     <label htmlFor="sexe">Sexe :</label>
-                    <input type="text" id="sexe" name="sexe" value={formData.sexe} onChange={handleChange} required />
+                    <input type="text" id="sexe" name="sexe" value={formData.sexe} onChange={handleChange} maxLength={1} placeholder="M or F"  />
                 </div>
                 <div>
                     <label htmlFor="planet">Planète :</label>
@@ -64,7 +72,7 @@ export default function AddHero() {
                 </div>
                 <div>
                     <label htmlFor="powers">Pouvoirs :</label>
-                    <input type="text" id="powers" name="powers" value={formData.powers} onChange={handleChange} required />
+                    <input type="text" id="powers" name="powers" value={formData.powers} onChange={handleChange} />
                 </div>
                 <div>
                     <label htmlFor="city">Ville :</label>
@@ -72,15 +80,15 @@ export default function AddHero() {
                 </div>
                 <div>
                     <label htmlFor="gadgets">Gadgets :</label>
-                    <input type="text" id="gadgets" name="gadgets" value={formData.gadgets} onChange={handleChange} required />
+                    <input type="text" id="gadgets" name="gadgets" value={formData.gadgets} onChange={handleChange} />
                 </div>
                 <div>
                     <label htmlFor="team">Équipe :</label>
-                    <input type="text" id="team" name="team" value={formData.team} onChange={handleChange} required />
+                    <input type="text" id="team" name="team" value={formData.team} onChange={handleChange} />
                 </div>
                 <div>
                     <label htmlFor="vehicle">Véhicule :</label>
-                    <input type="text" id="vehicle" name="vehicle" value={formData.vehicle} onChange={handleChange} required />
+                    <input type="text" id="vehicle" name="vehicle" value={formData.vehicle} onChange={handleChange} />
                 </div>
                 <button type="submit">Ajouter</button>
             </form>

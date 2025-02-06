@@ -17,11 +17,11 @@ class HerosController extends Controller
             'sexe' => 'required|string|max:1',
             'planet' => 'required|string|max:255',
             'description' => 'required|string',
-            'powers' => 'required|string',
+            'powers' => 'nullable|string', 
             'city' => 'required|string|max:255',
-            'gadgets' => 'required|string|max:255',
-            'team' => 'required|string|max:255',
-            'vehicle' => 'required|string|max:255',
+            'gadgets' => 'nullable|string|max:255', 
+            'team' => 'nullable|string|max:255', 
+            'vehicle' => 'nullable|string|max:255',
         ]);
     
         $hero = new Heros();
@@ -29,17 +29,18 @@ class HerosController extends Controller
         $hero->sexe = $validatedData['sexe'];
         $hero->planet = $validatedData['planet'];
         $hero->description = $validatedData['description'];
-        $hero->powers = $validatedData['powers'];
+        $hero->powers = $validatedData['powers'] ?? "Aucun pouvoir";
         $hero->city = $validatedData['city'];
-        $hero->gadgets = $validatedData['gadgets'];
-        $hero->team = $validatedData['team'];
-        $hero->vehicle = $validatedData['vehicle'];
+        $hero->gadgets = $validatedData['gadgets'] ?? "Aucun gadget";  
+        $hero->team = $validatedData['team'] ?? "Aucune équipe";  
+        $hero->vehicle = $validatedData['vehicle'] ?? "Aucun véhicule";  
         $hero->save();
     
         return response()->json([
             "message" => "Hero created"
         ], 201);
     }
+    
 
     public function show($id){
         $hero = Heros::find($id);
