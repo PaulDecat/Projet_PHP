@@ -515,3 +515,19 @@
 #56 C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('...')
 #57 {main}
 "} 
+[2025-02-07 15:21:25] local.ERROR: Trait "App\Http\Controllers\AuthorizesRequests" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Http\\Controllers\\AuthorizesRequests\" not found at C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\app\\Http\\Controllers\\Controller.php:5)
+[stacktrace]
+#0 {main}
+"} 
+[2025-02-07 15:21:56] local.ERROR: Trait "App\Http\Controllers\AuthorizesRequests" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Http\\Controllers\\AuthorizesRequests\" not found at C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\app\\Http\\Controllers\\Controller.php:5)
+[stacktrace]
+#0 {main}
+"} 
+[2025-02-07 15:23:12] local.ERROR: Trait "App\Http\Controllers\AuthorizesRequests" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Http\\Controllers\\AuthorizesRequests\" not found at C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\app\\Http\\Controllers\\Controller.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2025-02-07 15:23:16] local.ERROR: Trait "App\Http\Controllers\AuthorizesRequests" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Http\\Controllers\\AuthorizesRequests\" not found at C:\\Users\\lecha\\Ynov\\Projet_PHP\\Back-end\\Voughtplus\\app\\Http\\Controllers\\Controller.php:9)
+[stacktrace]
+#0 {main}
+"} 
