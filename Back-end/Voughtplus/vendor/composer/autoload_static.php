@@ -516,8 +516,18 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\CityController' => __DIR__ . '/../..' . '/app/Http/Controllers/CityController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\GadgetsController' => __DIR__ . '/../..' . '/app/Http/Controllers/GadgetsController.php',
+        'App\\Http\\Controllers\\HeroesController' => __DIR__ . '/../..' . '/app/Http/Controllers/HeroesController.php',
+        'App\\Http\\Controllers\\PlanetController' => __DIR__ . '/../..' . '/app/Http/Controllers/PlanetController.php',
+        'App\\Http\\Controllers\\PowersController' => __DIR__ . '/../..' . '/app/Http/Controllers/PowersController.php',
+        'App\\Http\\Controllers\\TeamController' => __DIR__ . '/../..' . '/app/Http/Controllers/TeamController.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\city' => __DIR__ . '/../..' . '/app/Models/city.php',
+        'App\\Models\\heroes' => __DIR__ . '/../..' . '/app/Models/heroes.php',
+        'App\\Models\\planet' => __DIR__ . '/../..' . '/app/Models/planet.php',
+        'App\\Models\\team' => __DIR__ . '/../..' . '/app/Models/team.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
