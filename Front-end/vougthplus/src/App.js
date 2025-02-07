@@ -10,7 +10,7 @@ function App() {
     <Router>
       <nav>
         <ul>
-          <li><Link to="/home">Accueil</Link></li>
+          <li><Link to="/">Accueil</Link></li>
           <li><Link to="/getHeros">Tous les héros</Link></li>
           <li><Link to="/addHero">Ajouter un héros</Link></li>
           <li><Link to="/deleteHeros">Supprimer un héros</Link></li>
