@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HerosController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\HerosController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 Route::get('/heros', [HerosController::class, 'index']);
 Route::get('/heros/{id}', [HerosController::class, 'show']);
 Route::post('/heros', [HerosController::class, 'store']);
