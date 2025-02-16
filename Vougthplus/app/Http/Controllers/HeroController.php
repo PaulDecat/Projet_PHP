@@ -9,7 +9,23 @@ class HeroController extends Controller
 {
     public function index()
     {
-        $heroes = \App\Models\hero::all();
+        $heroes = Hero::with(['gadget:name', 'power:name'])->get();
+    
+        $heroes = $heroes->map(function ($hero) {
+            return [
+                'id' => $hero->id,
+                'name' => $hero->name,
+                'sexe' => $hero->sexe,
+                'description' => $hero->description,
+                'Planet' => \App\Models\Planet::find($hero->idPlanet)?->name,
+                'City' => \App\Models\City::find($hero->idCity)?->name,
+                'Team' => \App\Models\Team::find($hero->idTeam)?->name,
+                'vehicle' => $hero->vehicle,
+                'gadget' => $hero->gadget->pluck('name'),
+                'power' => $hero->power->pluck('name'),
+            ];
+        });
+    
         return response()->json($heroes);
     }
 
@@ -52,9 +68,26 @@ class HeroController extends Controller
 
     public function show($id)
     {
-        $hero = \App\Models\hero::find($id);
-        return response()->json($hero);
+        $hero = \App\Models\Hero::with(['gadget:name', 'power:name'])->find($id);
+
+        if (!$hero) {
+            return response()->json(['message' => 'Hero not found'], 404);
+        }
+
+        return [
+            'id' => $hero->id,
+            'name' => $hero->name,
+            'sexe' => $hero->sexe,
+            'description' => $hero->description,
+            'planet' => \App\Models\Planet::find($hero->idPlanet)?->name, 
+            'city' => \App\Models\City::find($hero->idCity)?->name, 
+            'team' => \App\Models\Team::find($hero->idTeam)?->name,
+            'vehicle' => $hero->vehicle,
+            'gadget' => $hero->gadget->pluck('name'),
+            'power' => $hero->power->pluck('name'),
+        ];
     }
+
 
     public function update(Request $request, $id)
     {

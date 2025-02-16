@@ -11,6 +11,8 @@ class power extends Model
     protected $table = 'power';
     protected $fillable = ['name'];
 
+    protected $hidden = ['pivot'];
+
     public function hero()
     {
         return $this->belongsToMany('App\Models\hero');
