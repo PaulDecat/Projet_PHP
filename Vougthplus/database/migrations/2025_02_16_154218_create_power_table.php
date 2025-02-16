@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hero_gadget', function (Blueprint $table) {
+        Schema::create('power', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idHero')->constrained('hero', 'id');
-            $table->foreignId('idGadget')->constrained('gadget', 'id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hero_gadget');
+        Schema::dropIfExists('power');
     }
 };

@@ -10,7 +10,7 @@ class HeroController extends Controller
     public function index()
     {
         $heroes = \App\Models\hero::all();
-        return view('hero.index', compact('heroes'));
+        return response()->json($heroes);
     }
 
     public function store(Request $request){
@@ -18,6 +18,7 @@ class HeroController extends Controller
             'name' => 'required|string|max:255',
             'sexe' => 'required|string|max:1',
             'planet' => 'required|string|max:255',
+            'galaxy' => 'required|string|max:255',
             'description' => 'required|string',
             'power' => 'nullable|array',
             'power.*' => 'string',
@@ -31,25 +32,28 @@ class HeroController extends Controller
         $hero->name = $validateData['name'];
         $hero->sexe = $validateData['sexe'];
         $hero->description = $validateData['description'];
-        $hero->idPlanet = \App\Models\planet::firstOrCreate(['name' => $validateData['planet']])->idPlanet;
-        $hero->idCity = \App\Models\city::firstOrCreate(['name' => $validateData['city']])->idCity;
+        $hero->idPlanet = \App\Models\planet::firstOrCreate(['name' => $validateData['planet'], 'galaxy' => $validateData['galaxy']])->id;
+        $hero->idCity = \App\Models\city::firstOrCreate(['name' => $validateData['city']])->id;
         if($validateData['team']){
-            $hero->idTeam = \App\Models\team::firstOrCreate(['name' => $validateData['team']])->idTeam;
+            $hero->idTeam = \App\Models\team::firstOrCreate(['name' => $validateData['team']])->id;
         }
         if($validateData['vehicle']){
             $hero->vehicle = $validateData['vehicle'];
         }
         $hero->save();
-        $hero->power()->attach($validateData['power']);
-        $hero->gadget()->attach($validateData['gadget']);
-        return response()->json(['message' => 'Hero created', 'id' => $hero->idHero], 201);
-
+        foreach($validateData['power'] as $power){
+            $hero->power()->attach(\App\Models\power::firstOrCreate(['name' => $power])->id);
+        }
+        foreach($validateData['gadget'] as $gadget){
+            $hero->gadget()->attach(\App\Models\gadget::firstOrCreate(['name' => $gadget])->id);
+        }
+        return response()->json($hero);
     }
 
     public function show($id)
     {
         $hero = \App\Models\hero::find($id);
-        return view('hero.show', compact('hero'));
+        return response()->json($hero);
     }
 
     public function update(Request $request, $id)
@@ -82,7 +86,7 @@ class HeroController extends Controller
         $hero->save();
         $hero->power()->sync($validateData['power']);
         $hero->gadget()->sync($validateData['gadget']);
-        return response()->json(['message' => 'Hero updated', 'id' => $hero->idHero], 200);
+        return response()->json($hero);
     }
 
     public function destroy($id)

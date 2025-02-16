@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hero', function (Blueprint $table) {
-            $table->id('idHero');
+            $table->id();
             $table->string('name');
             $table->string('sexe', 1);
             $table->foreignId('idPlanet')->constrained('planet')->onDelete('cascade');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('heroes');
+        Schema::dropIfExists('hero');
     }
 };

@@ -13,16 +13,26 @@ class hero extends Model
 
     public function city()
     {
-        return $this->belongsTo('App\Models\city');
+        return $this->belongsTo('App\Models\city', 'idCity');
     }
 
     public function planet()
     {
-        return $this->belongsTo('App\Models\planet');
+        return $this->belongsTo('App\Models\planet', 'idPlanet');
     }
 
     public function team()
     {
-        return $this->belongsTo('App\Models\team');
+        return $this->belongsTo('App\Models\team', 'idTeam');
+    }
+
+    public function power()
+    {
+        return $this->belongsToMany('App\Models\power', 'hero_power', 'idHero', 'idPower');
+    }
+
+    public function gadget()
+    {
+        return $this->belongsToMany('App\Models\gadget', 'hero_gadget', 'idHero', 'idGadget');
     }
 }

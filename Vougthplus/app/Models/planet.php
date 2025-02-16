@@ -13,6 +13,6 @@ class planet extends Model
 
     public function hero()
     {
-        return $this->hasMany('App\Models\hero');
+        return $this->hasMany('App\Models\hero', 'idPlanet');
     }
 }
