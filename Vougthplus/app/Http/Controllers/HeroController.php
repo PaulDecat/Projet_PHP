@@ -91,10 +91,17 @@ class HeroController extends Controller
 
     public function update(Request $request, $id)
     {
+        $hero = \App\Models\hero::find($id);
+
+        if (!$hero) {
+            return response()->json(['message' => 'Hero not found'], 404);
+        }
+
         $validateData = $request->validate([
             'name' => 'required|string|max:255',
             'sexe' => 'required|string|max:1',
             'planet' => 'required|string|max:255',
+            'galaxy' => 'required|string|max:255',
             'description' => 'required|string',
             'power' => 'nullable|array',
             'power.*' => 'string',
@@ -104,28 +111,40 @@ class HeroController extends Controller
             'team' => 'nullable|string|max:255',
             'vehicle' => 'nullable|string|max:255',
         ]);
-        $hero = \App\Models\hero::find($id);
+
         $hero->name = $validateData['name'];
         $hero->sexe = $validateData['sexe'];
         $hero->description = $validateData['description'];
-        $hero->idPlanet = \App\Models\planet::firstOrCreate(['name' => $validateData['planet']])->idPlanet;
-        $hero->idCity = \App\Models\city::firstOrCreate(['name' => $validateData['city']])->idCity;
+        $hero->idPlanet = \App\Models\planet::firstOrCreate(['name' => $validateData['planet'], 'galaxy' => $validateData['galaxy']])->id;
+        $hero->idCity = \App\Models\city::firstOrCreate(['name' => $validateData['city']])->id;
         if($validateData['team']){
-            $hero->idTeam = \App\Models\team::firstOrCreate(['name' => $validateData['team']])->idTeam;
+            $hero->idTeam = \App\Models\team::firstOrCreate(['name' => $validateData['team']])->id;
         }
         if($validateData['vehicle']){
             $hero->vehicle = $validateData['vehicle'];
         }
         $hero->save();
-        $hero->power()->sync($validateData['power']);
-        $hero->gadget()->sync($validateData['gadget']);
+        $hero->power()->detach();
+        foreach($validateData['power'] as $power){
+            $hero->power()->attach(\App\Models\power::firstOrCreate(['name' => $power])->id);
+        }
+        $hero->gadget()->detach();
+        foreach($validateData['gadget'] as $gadget){
+            $hero->gadget()->attach(\App\Models\gadget::firstOrCreate(['name' => $gadget])->id);
+        }
         return response()->json($hero);
     }
 
     public function destroy($id)
     {
         $hero = \App\Models\hero::find($id);
+
+        if (!$hero) {
+            return response()->json(['message' => 'Hero not found'], 404);
+        }
+
         $hero->delete();
-        return response()->json(['message' => 'Hero deleted'], 200);
+
+        return response()->json(['message' => 'Hero deleted']);
     }
 }
