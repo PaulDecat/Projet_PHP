@@ -21,7 +21,14 @@ class PlanetController extends Controller
 
     public function store(Request $request)
     {
-        $planet = Planet::create($request->all());
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+            'galaxy' => 'required|string|max:255',
+        ]);
+        $planet = new Planet();
+        $planet->name = $validateData['name'];
+        $planet->galaxy = $validateData['galaxy'];
+        $planet->save();
         return response()->json($planet);
     }
 }

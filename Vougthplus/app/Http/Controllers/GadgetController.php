@@ -21,7 +21,12 @@ class GadgetController extends Controller
 
     public function store(Request $request)
     {
-        $gadget = Gadget::create($request->all());
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $gadget = new Gadget();
+        $gadget->name = $validateData['name'];
+        $gadget->save();
         return response()->json($gadget);
     }
 }

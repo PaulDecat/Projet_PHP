@@ -21,7 +21,12 @@ class PowerController extends Controller
 
     public function store(Request $request)
     {
-        $power = Power::create($request->all());
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $power = new Power();
+        $power->name = $validateData['name'];
+        $power->save();
         return response()->json($power);
     }
 }

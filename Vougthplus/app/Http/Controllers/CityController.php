@@ -21,7 +21,12 @@ class CityController extends Controller
 
     public function store(Request $request)
     {
-        $city = City::create($request->all());
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $city = new City();
+        $city->name = $validateData['name'];
+        $city->save();
         return response()->json($city);
     }
 

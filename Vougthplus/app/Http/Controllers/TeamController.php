@@ -18,4 +18,15 @@ class TeamController extends Controller
         $team = Team::find($id);
         return response()->json($team);
     }
+
+    public function store(Request $request)
+    {
+        $validateData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        $team = new Team();
+        $team->name = $validateData['name'];
+        $team->save();
+        return response()->json($team);
+    }
 }
