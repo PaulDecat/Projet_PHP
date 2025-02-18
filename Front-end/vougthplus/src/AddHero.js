@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function AddHero() {    
@@ -7,15 +7,27 @@ export default function AddHero() {
         sexe: "",
         planet: "",
         description: "",
-        powers: "",
+        power: [],
         city: "",
-        gadgets: "",
+        gadget: [],
         team: "",
         vehicle: "",
     });
 
+    const [cities, setCities] = useState([]);
+    const [planets, setPlanets] = useState([]);
+    const [power, setPower] = useState([]);
+    const [teams, setTeams] = useState([]);
+    const [gadget, setGadget] = useState([]);
+
     const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
+        const { name, value, options } = event.target;
+        if (name === "power" || name === "gadget") {
+            const selectedOptions = Array.from(options).filter(option => option.selected).map(option => option.value);
+            setFormData({ ...formData, [name]: selectedOptions });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -23,24 +35,24 @@ export default function AddHero() {
     
         const dataToSend = {
             ...formData,
-            powers: formData.powers || "Aucun pouvoir",
-            gadgets: formData.gadgets || "Aucun gadget", 
             team: formData.team || "Aucune équipe", 
             vehicle: formData.vehicle || "Aucun véhicule", 
         };
-    
+        
+        console.log("Données à envoyer :", dataToSend);
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/heros", dataToSend);
+            const response = await axios.post("http://127.0.0.1:8000/api/heroes", dataToSend);
             console.log("Héros ajouté :", response.data);
             alert("Héros ajouté avec succès !");
             setFormData({
                 name: "",
                 sexe: "",
                 planet: "",
+                galaxy: "",
                 description: "",
-                powers: "",
+                power: [],
                 city: "",
-                gadgets: "",
+                gadget: [],
                 team: "",
                 vehicle: "",
             });
@@ -49,6 +61,69 @@ export default function AddHero() {
             alert("Erreur lors de l'ajout du héros.");
         }
     };
+
+    const handleCities = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/cities");
+            console.log("Villes récupérées :", response.data);
+            setCities(response.data); // Stocker les villes dans l'état
+        }
+        catch (error) {
+            console.error("Erreur lors de la récupération des villes :", error);
+        }
+    };
+
+    const handlePlanets = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/planets");
+            console.log("Planètes récupérées :", response.data);
+            setPlanets(response.data);
+        }
+        catch (error) {
+            console.error("Erreur lors de la récupération des planètes :", error);
+        }
+    };
+
+    const handlePower = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/powers");
+            console.log("Pouvoirs récupérés :", response.data);
+            setPower(response.data);
+        }
+        catch (error) {
+            console.error("Erreur lors de la récupération des pouvoirs :", error);
+        }
+    }
+
+    const handleTeams = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/teams");
+            console.log("Équipes récupérées :", response.data);
+            setTeams(response.data);
+        }
+        catch (error) {
+            console.error("Erreur lors de la récupération des équipes :", error);
+        }
+    }
+
+    const handleGadget = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8000/api/gadgets");
+            console.log("Gadgets récupérés :", response.data);
+            setGadget(response.data);
+        }
+        catch (error) {
+            console.error("Erreur lors de la récupération des gadgets :", error);
+        }
+    }
+
+    useEffect(() => {
+        handleCities();
+        handlePlanets();
+        handlePower();
+        handleTeams();
+        handleGadget();
+    }, []);
 
     return (
         <div>
@@ -60,31 +135,62 @@ export default function AddHero() {
                 </div>
                 <div>
                     <label htmlFor="sexe">Sexe :</label>
-                    <input type="text" id="sexe" name="sexe" value={formData.sexe} onChange={handleChange} maxLength={1} placeholder="M or F"  />
+                    <select id="sexe" name="sexe" value={formData.sexe} onChange={handleChange} required>
+                        <option value="">Sélectionnez le sexe</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="planet">Planète :</label>
-                    <input type="text" id="planet" name="planet" value={formData.planet} onChange={handleChange} required />
+                    <select id="planet" name="planet" value={formData.planet} onChange={handleChange} required>
+                        <option value="">Sélectionnez une planète</option>
+                        {planets.map((planet) => (
+                            <option key={planet.id} value={planet.name}>{planet.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="galaxy">Galaxie :</label>
+                    <input type="text" id="galaxy" name="galaxy" value={formData.galaxy} onChange={handleChange} required />
                 </div>
                 <div>
                     <label htmlFor="description">Description :</label>
                     <input type="text" id="description" name="description" value={formData.description} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label htmlFor="powers">Pouvoirs :</label>
-                    <input type="text" id="powers" name="powers" value={formData.powers} onChange={handleChange} />
+                    <label htmlFor="power">Pouvoirs :</label>
+                    <select id="power" name="power" value={formData.power} onChange={handleChange} multiple>
+                        {power.map((power) => (
+                            <option key={power.id} value={power.name}>{power.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="city">Ville :</label>
-                    <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} required />
+                    <select id="city" name="city" value={formData.city} onChange={handleChange}>
+                        <option value="">Sélectionnez une ville</option>
+                        {cities.map((city) => (
+                            <option key={city.id} value={city.name}>{city.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
-                    <label htmlFor="gadgets">Gadgets :</label>
-                    <input type="text" id="gadgets" name="gadgets" value={formData.gadgets} onChange={handleChange} />
+                    <label htmlFor="gadget">Gadgets :</label>
+                    <select id="gadget" name="gadget" value={formData.gadget} onChange={handleChange} multiple>
+                        {gadget.map((gadget) => (
+                            <option key={gadget.id} value={gadget.name}>{gadget.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="team">Équipe :</label>
-                    <input type="text" id="team" name="team" value={formData.team} onChange={handleChange} />
+                    <select id="team" name="team" value={formData.team} onChange={handleChange}>
+                        <option value="">Sélectionnez une équipe</option>
+                        {teams.map((team) => (
+                            <option key={team.id} value={team.name}>{team.name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="vehicle">Véhicule :</label>
