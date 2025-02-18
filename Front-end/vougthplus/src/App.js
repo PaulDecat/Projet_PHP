@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from "./Home";
 import AllHeros from "./AllHeros";
 import AddHero from "./AddHero";
@@ -8,14 +8,25 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li><Link to="/home">Accueil</Link></li>
-          <li><Link to="/getHeros">Tous les héros</Link></li>
-          <li><Link to="/addHero">Ajouter un héros</Link></li>
-          <li><Link to="/deleteHeros">Supprimer un héros</Link></li>
-        </ul>
-      </nav>
+      <AppContent />
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+
+  return (
+    <>
+      {location.pathname !== "/" && (
+        <nav>
+          <ul>
+            <li><Link to="/getHeros">Tous les héros</Link></li>
+            <li><Link to="/addHero">Ajouter un héros</Link></li>
+            <li><Link to="/deleteHeros">Supprimer un héros</Link></li>
+          </ul>
+        </nav>
+      )}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,7 +34,7 @@ function App() {
         <Route path="/addHero" element={<AddHero />} />
         <Route path="/deleteHeros" element={<DeleteHero />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

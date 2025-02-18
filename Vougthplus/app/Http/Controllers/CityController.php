@@ -19,4 +19,10 @@ class CityController extends Controller
         return response()->json($city);
     }
 
+    public function store(Request $request)
+    {
+        $city = City::create($request->all());
+        return response()->json($city);
+    }
+
 }

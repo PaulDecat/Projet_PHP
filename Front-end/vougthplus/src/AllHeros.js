@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./AllHeros.css";
 
 export default function AllHeros() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/heros")
+        axios.get("http://127.0.0.1:8000/api/heroes")
         .then((response) => {
             console.log("Réponse API :", response.data);
             setData(response.data); 
@@ -15,19 +16,29 @@ export default function AllHeros() {
     
 
     return (
-        <div>
+        <div className="container">
             <h1>Tout les héros :</h1>
             {data ? (
                 data.map((hero) => (
-                    <div key={hero.id} style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
+                    <div key={hero.id} className="hero-card">
                         <p><strong>Nom :</strong> {hero.name}</p>
                         <p><strong>Sexe :</strong> {hero.sexe}</p>
-                        <p><strong>Planète :</strong> {hero.planet}</p>
+                        <p><strong>Planète :</strong> {hero.Planet}</p>
                         <p><strong>Description :</strong> {hero.description}</p>
-                        <p><strong>Pouvoirs :</strong> {hero.powers}</p>
-                        <p><strong>Équipe :</strong> {hero.team}</p>
-                        <p><strong>Ville :</strong> {hero.city}</p>
-                        <p><strong>Gadgets :</strong> {hero.gadgets}</p>
+                        <p><strong>Pouvoirs :</strong></p>
+                        <ul>
+                            {hero.power.map((power, index) => (
+                                <li key={index}>{power}</li>
+                            ))}
+                        </ul>
+                        <p><strong>Équipe :</strong> {hero.Team}</p>
+                        <p><strong>Ville :</strong> {hero.City}</p>
+                        <p><strong>Gadgets :</strong></p>
+                        <ul>
+                            {hero.gadget.map((weapon, index) => (
+                                <li key={index}>{weapon}</li>
+                            ))}
+                        </ul>
                         <p><strong>Véhicule :</strong> {hero.vehicle}</p>
                     </div>
                 ))
@@ -36,6 +47,5 @@ export default function AllHeros() {
             )}
         </div>
     );
-    
 }
 

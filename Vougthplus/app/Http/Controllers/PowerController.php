@@ -18,4 +18,10 @@ class PowerController extends Controller
         $power = Power::find($id);
         return response()->json($power);
     }
+
+    public function store(Request $request)
+    {
+        $power = Power::create($request->all());
+        return response()->json($power);
+    }
 }

@@ -17,15 +17,19 @@ Route::middleware('api')->group(function () {
 
     Route::get('/cities', [CityController::class, 'index']);
     Route::get('/cities/{id}', [CityController::class, 'show']);
+    Route::post('/cities', [CityController::class, 'store']);
 
     Route::get('/gadgets', [GadgetController::class, 'index']);
     Route::get('/gadgets/{id}', [GadgetController::class, 'show']);
+    Route::post('/gadgets', [GadgetController::class, 'store']);
 
     Route::get('/planets', [PlanetController::class, 'index']);
     Route::get('/planets/{id}', [PlanetController::class, 'show']);
+    Route::post('/planets', [PlanetController::class, 'store']);
 
     Route::get('/powers', [PowerController::class, 'index']);
     Route::get('/powers/{id}', [PowerController::class, 'show']);
+    Route::post('/powers', [PowerController::class, 'store']);
 
     Route::get('/teams', [TeamController::class, 'index']);
     Route::get('/teams/{id}', [TeamController::class, 'show']);

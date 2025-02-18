@@ -18,4 +18,10 @@ class GadgetController extends Controller
         $gadget = Gadget::find($id);
         return response()->json($gadget);
     }
+
+    public function store(Request $request)
+    {
+        $gadget = Gadget::create($request->all());
+        return response()->json($gadget);
+    }
 }
