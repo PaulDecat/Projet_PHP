@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -6,18 +7,26 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
+    const getCsrfToken = async () => {
+        await fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
+            method: 'GET',
+            credentials: 'include',
+        });
+    };
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Récupérer le jeton CSRF depuis le meta tag
-        const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-
+    
+        await getCsrfToken();
+    
         const response = await fetch('http://127.0.0.1:8000/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken,  // Ajouter le jeton CSRF ici
+                'Accept': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify({
                 name,
                 email,
@@ -25,11 +34,12 @@ export default function Register() {
                 password_confirmation: passwordConfirmation,
             }),
         });
-
-        if (response.ok) {
-            console.log('User registered successfully');
+    
+        const responseData = await response.json();
+        if (!response.ok) {
+            console.error('Registration failed', responseData);
         } else {
-            console.error('Registration failed');
+            console.log('User registered successfully');
         }
     };
 
@@ -52,6 +62,9 @@ export default function Register() {
                 <input type="password" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)} required />
             </div>
             <button type="submit">Register</button>
+            <p>
+                Already have an account? <Link to="/login">Login</Link>
+            </p>
         </form>
     );
 }

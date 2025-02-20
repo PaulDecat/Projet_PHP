@@ -7,7 +7,7 @@ export default function DeleteHero() {
     const [heroToDelete, setHeroToDelete] = useState(null);
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8000/api/heros")
+        axios.get("http://127.0.0.1:8000/api/heroes")
             .then(response => {
                 setData(response.data);
             })
@@ -24,7 +24,7 @@ export default function DeleteHero() {
 
     const handleDelete = async () => {
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/heros/${heroToDelete}`);
+            const response = await axios.delete(`http://127.0.0.1:8000/api/heroes/${heroToDelete}`);
             console.log("Héros supprimé :", response.data);
             setData(prevData => prevData.filter(hero => hero.id !== heroToDelete));
             setIsModalOpen(false);
