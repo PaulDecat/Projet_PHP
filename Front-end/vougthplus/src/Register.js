@@ -72,7 +72,6 @@ export default function Register() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {error && <div style={{ color: 'red' }}>{error}</div>} {/* Display error message */}
             <div>
                 <label>Name:</label>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />

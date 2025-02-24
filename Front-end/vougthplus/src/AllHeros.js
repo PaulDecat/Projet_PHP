@@ -11,21 +11,10 @@ export default function AllHeros() {
         axios.get("http://127.0.0.1:8000/api/heroes")
         .then((response) => {
             console.log("Réponse API :", response.data);
-            setData(response.data);
-            setFilteredData(response.data);
+            setData(response.data); 
         })
         .catch((error) => console.error("Erreur API :", error));
     }, []);
-
-    const handleFilter = (criteria) => {
-        setFilter(criteria);
-        if (criteria === "") {
-            setFilteredData(data);
-        } else {
-            setFilteredData(data.filter(hero => hero.sexe === criteria));
-        }
-    };
-
     
 
     return (
@@ -49,15 +38,15 @@ export default function AllHeros() {
                                 <li key={index}>{power}</li>
                             ))}
                         </ul>
-                        <p><strong>Équipe :</strong> {hero.Team}</p>
-                        <p><strong>Ville :</strong> {hero.City}</p>
-                        <p><strong>Gadgets :</strong></p>
+                        <p><strong>Équipe:</strong> {hero.Team}</p>
+                        <p><strong>Ville:</strong> {hero.City}</p>
+                        <p><strong>Gadgets:</strong></p>
                         <ul>
                             {hero.gadget.map((weapon, index) => (
                                 <li key={index}>{weapon}</li>
                             ))}
                         </ul>
-                        <p><strong>Véhicule :</strong> {hero.vehicle}</p>
+                        <p><strong>Véhicule:</strong> {hero.vehicle}</p>
                     </div>
                 ))
             ) : (
@@ -66,3 +55,4 @@ export default function AllHeros() {
         </div>
     );
 }
+
