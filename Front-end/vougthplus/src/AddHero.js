@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Modal from 'react-modal';
 import "./AddHero.css"; // Assurez-vous d'importer le fichier CSS contenant les styles du modal
+import "./ModalStyles.css"; // Importez les styles personnalisés pour les modals
 
 export default function AddHero() {    
     const [formData, setFormData] = useState({
@@ -207,97 +209,168 @@ export default function AddHero() {
         handleGadget();
     }, []);
 
-return (
-    <div className="add-hero-container">
-        <h1>Ajouter un Héro 🦸🏻‍♂️🚀</h1>
-        <form className="add-hero-form">
-            <div className="form-grid">
+    return (
+        <div className="add-hero-container">
+            <h1>Ajouter un Héro 🦸🏻‍♂️🚀</h1>
+            <form className="add-hero-form" onSubmit={handleSubmit}>
+                <div className="form-grid">
 
-                <div className="input-group">
-                    <label htmlFor="hero-name">Nom ✍🏼</label>
-                    <input type="text" id="hero-name" name="name" value={formData.name} onChange={handleChange} required />
+                    <div className="input-group">
+                        <label htmlFor="hero-name">Nom ✍🏼</label>
+                        <input type="text" id="hero-name" name="name" value={formData.name} onChange={handleChange} required />
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-sexe">Sexe 👶🏻</label>
+                        <select id="hero-sexe" name="sexe" value={formData.sexe} onChange={handleChange} required>
+                            <option value="">Sélectionnez</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-planet">Planète 🪐</label>
+                        <select id="hero-planet" name="planet" value={formData.planet} onChange={handleChange} required>
+                            <option value="">Sélectionnez</option>
+                            {planets.map((planet) => (
+                                <option key={planet.id} value={planet.name}>{planet.name}</option>
+                            ))}
+                        </select>
+                        <button className="add-small-button" type="button" onClick={() => setShowPlanetModal(true)}>Ajouter une planète</button>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-galaxy">Galaxie ☄️</label>
+                        <input type="text" id="hero-galaxy" name="galaxy" value={formData.galaxy} onChange={handleChange} required />
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-description">Description 📋</label>
+                        <textarea id="hero-description" name="description" value={formData.description} onChange={handleChange} required></textarea>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-powers">Pouvoir 🏋🏽‍♀️</label>
+                        <select id="hero-powers" name="power" value={formData.power} onChange={handleChange} multiple>
+                            <option value="">Sélectionnez</option>
+                            {power.map((p) => (
+                                <option key={p.id} value={p.name}>{p.name}</option>
+                            ))}
+                        </select>
+                        <button className="add-small-button" type="button" onClick={() => setShowPowerModal(true)}>Ajouter un pouvoir</button>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-city">Ville 🌇</label>
+                        <select id="hero-city" name="city" value={formData.city} onChange={handleChange}>
+                            <option value="">Sélectionnez</option>
+                            {cities.map((city) => (
+                                <option key={city.id} value={city.name}>{city.name}</option>
+                            ))}
+                        </select>
+                        <button className="add-small-button" type="button" onClick={() => setShowCityModal(true)}>Ajouter une ville</button>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-gadgets">Gadgets 🧰</label>
+                        <select id="hero-gadgets" name="gadget" value={formData.gadget} onChange={handleChange} multiple>
+                            {gadget.map((g) => (
+                                <option key={g.id} value={g.name}>{g.name}</option>
+                            ))}
+                        </select>
+                        <button className="add-small-button" type="button" onClick={() => setShowGadgetModal(true)}>Ajouter un gadget</button>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-team">Équipe 👩🏽‍🤝‍👨🏼</label>
+                        <select id="hero-team" name="team" value={formData.team} onChange={handleChange}>
+                            <option value="">Sélectionnez</option>
+                            {teams.map((team) => (
+                                <option key={team.id} value={team.name}>{team.name}</option>
+                            ))}
+                        </select>
+                        <button className="add-small-button" type="button" onClick={() => setShowTeamModal(true)}>Ajouter une équipe</button>
+                    </div>
+
+                    <div className="input-group">
+                        <label htmlFor="hero-vehicle">Véhicule 🚗</label>
+                        <input type="text" id="hero-vehicle" name="vehicle" value={formData.vehicle} onChange={handleChange} />
+                    </div>
+
                 </div>
 
-                <div className="input-group">
-                    <label htmlFor="hero-sexe">Sexe 👶🏻</label>
-                    <select id="hero-sexe" name="sexe" value={formData.sexe} onChange={handleChange} required>
-                        <option value="">Sélectionnez</option>
-                        <option value="M">M</option>
-                        <option value="F">F</option>
-                    </select>
-                </div>
+                <button className="add-button" type="submit">Ajouter ✨</button>
+            </form>
 
-                <div className="input-group">
-                    <label htmlFor="hero-planet">Planète 🪐</label>
-                    <select id="hero-planet" name="planet" value={formData.planet} onChange={handleChange} required>
-                        <option value="">Sélectionnez</option>
-                        {planets.map((planet) => (
-                            <option key={planet.id} value={planet.name}>{planet.name}</option>
-                        ))}
-                    </select>
-                    <button className="add-small-button" type="button" onClick={() => setShowPlanetModal(true)}>Ajouter une planète</button>
-                </div>
+            {/* Modal pour ajouter une planète */}
+            <Modal isOpen={showPlanetModal} onRequestClose={() => setShowPlanetModal(false)} className="modal-content" overlayClassName="modal-overlay">
+                <h2>Ajouter une Planète</h2>
+                <form onSubmit={handleAddPlanet}>
+                    <label>
+                        Nom de la planète:
+                        <input type="text" value={newPlanet.name} onChange={(e) => setNewPlanet({ ...newPlanet, name: e.target.value })} required />
+                    </label>
+                    <label>
+                        Galaxie:
+                        <input type="text" value={newPlanet.galaxy} onChange={(e) => setNewPlanet({ ...newPlanet, galaxy: e.target.value })} required />
+                    </label>
+                    <button type="submit">Ajouter</button>
+                    <button type="button" onClick={() => setShowPlanetModal(false)}>Annuler</button>
+                </form>
+            </Modal>
 
-                <div className="input-group">
-                    <label htmlFor="hero-galaxy">Galaxie ☄️</label>
-                    <input type="text" id="hero-galaxy" name="galaxy" value={formData.galaxy} onChange={handleChange} required />
-                </div>
+            {/* Modal pour ajouter une ville */}
+            <Modal isOpen={showCityModal} onRequestClose={() => setShowCityModal(false)} className="modal-content" overlayClassName="modal-overlay">
+                <h2>Ajouter une Ville</h2>
+                <form onSubmit={handleAddCity}>
+                    <label>
+                        Nom de la ville:
+                        <input type="text" value={newCity.name} onChange={(e) => setNewCity({ ...newCity, name: e.target.value })} required />
+                    </label>
+                    <button type="submit">Ajouter</button>
+                    <button type="button" onClick={() => setShowCityModal(false)}>Annuler</button>
+                </form>
+            </Modal>
 
-                <div className="input-group">
-                    <label htmlFor="hero-description">Description 📋</label>
-                    <textarea id="hero-description" name="description" value={formData.description} onChange={handleChange} required></textarea>
-                </div>
+            {/* Modal pour ajouter un pouvoir */}
+            <Modal isOpen={showPowerModal} onRequestClose={() => setShowPowerModal(false)} className="modal-content" overlayClassName="modal-overlay">
+                <h2>Ajouter un Pouvoir</h2>
+                <form onSubmit={handleAddPower}>
+                    <label>
+                        Nom du pouvoir:
+                        <input type="text" value={newPower.name} onChange={(e) => setNewPower({ ...newPower, name: e.target.value })} required />
+                    </label>
+                    <button type="submit">Ajouter</button>
+                    <button type="button" onClick={() => setShowPowerModal(false)}>Annuler</button>
+                </form>
+            </Modal>
 
-                <div className="input-group">
-                    <label htmlFor="hero-powers">Pouvoir 🏋🏽‍♀️</label>
-                    <select id="hero-powers" name="power" value={formData.power} onChange={handleChange} multiple>
-                        <option value="">Sélectionnez</option>
-                    </select>
-                    <button className="add-small-button" type="button" onClick={() => setShowPowerModal(true)}>Ajouter une pouvoir</button>
-                </div>
+            {/* Modal pour ajouter un gadget */}
+            <Modal isOpen={showGadgetModal} onRequestClose={() => setShowGadgetModal(false)} className="modal-content" overlayClassName="modal-overlay">
+                <h2>Ajouter un Gadget</h2>
+                <form onSubmit={handleAddGadget}>
+                    <label>
+                        Nom du gadget:
+                        <input type="text" value={newGadget.name} onChange={(e) => setNewGadget({ ...newGadget, name: e.target.value })} required />
+                    </label>
+                    <button type="submit">Ajouter</button>
+                    <button type="button" onClick={() => setShowGadgetModal(false)}>Annuler</button>
+                </form>
+            </Modal>
 
-                <div className="input-group">
-                    <label htmlFor="hero-city">Ville 🌇</label>
-                    <select id="hero-city" name="city" value={formData.city} onChange={handleChange}>
-                        <option value="">Sélectionnez</option>
-                        {cities.map((city) => (
-                            <option key={city.id} value={city.name}>{city.name}</option>
-                        ))}
-                    </select>
-                    <button className="add-small-button" type="button" onClick={() => setShowCityModal(true)}>Ajouter une ville</button>
-                </div>
-
-                <div className="input-group">
-                    <label htmlFor="hero-gadgets">Gadgets 🧰</label>
-                    <select id="hero-gadgets" name="gadget" value={formData.gadget} onChange={handleChange} multiple>
-                        {gadget.map((g) => (
-                            <option key={g.id} value={g.name}>{g.name}</option>
-                        ))}
-                    </select>
-                    <button className="add-small-button" type="button" onClick={() => setShowGadgetModal(true)}>Ajouter un gadget</button>
-                </div>
-
-                <div className="input-group">
-                    <label htmlFor="hero-team">Équipe 👩🏽‍🤝‍👨🏼</label>
-                    <select id="hero-team" name="team" value={formData.team} onChange={handleChange}>
-                        <option value="">Sélectionnez</option>
-                        {teams.map((team) => (
-                            <option key={team.id} value={team.name}>{team.name}</option>
-                        ))}
-                    </select>
-                    <button className="add-small-button" type="button" onClick={() => setShowTeamModal(true)}>Ajouter une équipe</button>
-                </div>
-
-                <div className="input-group">
-                    <label htmlFor="hero-vehicle">Véhicule 🚗</label>
-                    <input type="text" id="hero-vehicle" name="vehicle" value={formData.vehicle} onChange={handleChange} />
-                </div>
-
-            </div>
-
-            <button className="add-button" type="submit">Ajouter ✨</button>
-        </form>
-    </div>
-);
-    
+            {/* Modal pour ajouter une équipe */}
+            <Modal isOpen={showTeamModal} onRequestClose={() => setShowTeamModal(false)} className="modal-content" overlayClassName="modal-overlay">
+                <h2>Ajouter une Équipe</h2>
+                <form onSubmit={handleAddTeam}>
+                    <label>
+                        Nom de l'équipe:
+                        <input type="text" value={newTeam.name} onChange={(e) => setNewTeam({ ...newTeam, name: e.target.value })} required />
+                    </label>
+                    <button type="submit">Ajouter</button>
+                    <button type="button" onClick={() => setShowTeamModal(false)}>Annuler</button>
+                </form>
+            </Modal>
+        </div>
+    );
 }

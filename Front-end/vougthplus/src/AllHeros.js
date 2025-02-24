@@ -15,16 +15,12 @@ export default function AllHeros() {
         })
         .catch((error) => console.error("Erreur API :", error));
     }, []);
+
     
 
     return (
         <div className="container">
             <h1>Tout les héros :</h1>
-            <div className="filter-buttons">
-                <button onClick={() => handleFilter("")}>Tous</button>
-                <button onClick={() => handleFilter("M")}>Male</button>
-                <button onClick={() => handleFilter("F")}>Female</button>
-            </div>
             {filteredData ? (
                 filteredData.map((hero) => (
                     <div key={hero.id} className="hero-card">
