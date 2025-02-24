@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+/* General App Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #ffffff; /* White background like AddHero */
+  display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Sidebar Navigation */
+nav {
+  background: #c40000; /* Red sidebar for contrast */
+  width: 250px;
   min-height: 100vh;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Navigation List */
+nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+/* Navigation Links */
+nav ul li {
+  margin: 20px 0;
+  text-align: center;
+}
+
+nav ul li a {
+  text-decoration: none;
   color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 12px;
+  display: block;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  transition: 0.3s;
 }
 
+/* Hover Effects */
+nav ul li a:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Main Content Area */
+.App-content {
+  margin-left: 270px; /* Adjust to avoid overlapping with the sidebar */
+  padding: 40px;
+  width: 100%;
+}
+
+/* Header Styles (for Logo if used) */
+.App-header {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Links */
 .App-link {
-  color: #61dafb;
+  color: #ffcc00;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+      width: 200px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App-content {
+      margin-left: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+      width: 100%;
+      height: auto;
+      min-height: unset;
+      position: relative;
+      box-shadow: none;
+      padding: 10px;
+  }
+
+  nav ul {
+      display: flex;
+      justify-content: center;
+  }
+
+  nav ul li {
+      margin: 0 10px;
+  }
+
+  .App-content {
+      margin-left: 0;
+      padding: 20px;
   }
 }

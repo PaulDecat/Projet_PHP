@@ -17,29 +17,29 @@ export default function AllHeros() {
 
     return (
         <div className="container">
-            <h1>Tout les héros :</h1>
+            <h1>Tout les héros</h1>
             {data ? (
                 data.map((hero) => (
                     <div key={hero.id} className="hero-card">
-                        <p><strong>Nom :</strong> {hero.name}</p>
-                        <p><strong>Sexe :</strong> {hero.sexe}</p>
-                        <p><strong>Planète :</strong> {hero.Planet}</p>
-                        <p><strong>Description :</strong> {hero.description}</p>
-                        <p><strong>Pouvoirs :</strong></p>
+                        <p><strong>Nom:</strong> {hero.name}</p>
+                        <p><strong>Sexe:</strong> {hero.sexe}</p>
+                        <p><strong>Planète:</strong> {hero.Planet}</p>
+                        <p><strong>Description:</strong> {hero.description}</p>
+                        <p><strong>Pouvoirs:</strong></p>
                         <ul>
                             {hero.power.map((power, index) => (
                                 <li key={index}>{power}</li>
                             ))}
                         </ul>
-                        <p><strong>Équipe :</strong> {hero.Team}</p>
-                        <p><strong>Ville :</strong> {hero.City}</p>
-                        <p><strong>Gadgets :</strong></p>
+                        <p><strong>Équipe:</strong> {hero.Team}</p>
+                        <p><strong>Ville:</strong> {hero.City}</p>
+                        <p><strong>Gadgets:</strong></p>
                         <ul>
                             {hero.gadget.map((weapon, index) => (
                                 <li key={index}>{weapon}</li>
                             ))}
                         </ul>
-                        <p><strong>Véhicule :</strong> {hero.vehicle}</p>
+                        <p><strong>Véhicule:</strong> {hero.vehicle}</p>
                     </div>
                 ))
             ) : (
