@@ -4,22 +4,40 @@ import "./AllHeros.css";
 
 export default function AllHeros() {
     const [data, setData] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
+    const [filter, setFilter] = useState("");
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/heroes")
         .then((response) => {
             console.log("Réponse API :", response.data);
-            setData(response.data); 
+            setData(response.data);
+            setFilteredData(response.data);
         })
         .catch((error) => console.error("Erreur API :", error));
     }, []);
+
+    const handleFilter = (criteria) => {
+        setFilter(criteria);
+        if (criteria === "") {
+            setFilteredData(data);
+        } else {
+            setFilteredData(data.filter(hero => hero.sexe === criteria));
+        }
+    };
+
     
 
     return (
         <div className="container">
             <h1>Tout les héros :</h1>
-            {data ? (
-                data.map((hero) => (
+            <div className="filter-buttons">
+                <button onClick={() => handleFilter("")}>Tous</button>
+                <button onClick={() => handleFilter("M")}>Male</button>
+                <button onClick={() => handleFilter("F")}>Female</button>
+            </div>
+            {filteredData ? (
+                filteredData.map((hero) => (
                     <div key={hero.id} className="hero-card">
                         <p><strong>Nom :</strong> {hero.name}</p>
                         <p><strong>Sexe :</strong> {hero.sexe}</p>
@@ -48,4 +66,3 @@ export default function AllHeros() {
         </div>
     );
 }
-
