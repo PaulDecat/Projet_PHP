@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -46,3 +47,82 @@ h1 {
     padding: 5px;
     border-radius: 4px;
 }
+=======
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff; /* White background like AddHero */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Main Container */
+.container {
+    background: #004aad; /* Deep blue background like AddHero */
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white; /* High contrast for readability */
+}
+
+/* Page Title */
+h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Hero Card Styling */
+.hero-card {
+    background: rgba(255, 255, 255, 0.2); /* Light contrast for readability */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Hero Text */
+.hero-card p {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Hero Titles */
+.hero-card strong {
+    color: #ffcc00; /* Yellow for contrast */
+}
+
+/* List Styling */
+.hero-card ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+/* List Items */
+.hero-card ul li {
+    background: rgba(255, 255, 255, 0.3); /* Slight transparency for contrast */
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+>>>>>>> tayvadi

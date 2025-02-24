@@ -17,6 +17,7 @@ export default function AllHeros() {
 
     return (
         <div className="container">
+<<<<<<< HEAD
             <h1>Tout les héros :</h1>
             {data ? (
                 data.map((hero) => (
@@ -26,20 +27,41 @@ export default function AllHeros() {
                         <p><strong>Planète :</strong> {hero.Planet}</p>
                         <p><strong>Description :</strong> {hero.description}</p>
                         <p><strong>Pouvoirs :</strong></p>
+=======
+            <h1>Tout les héros</h1>
+            {data ? (
+                data.map((hero) => (
+                    <div key={hero.id} className="hero-card">
+                        <p><strong>Nom:</strong> {hero.name}</p>
+                        <p><strong>Sexe:</strong> {hero.sexe}</p>
+                        <p><strong>Planète:</strong> {hero.Planet}</p>
+                        <p><strong>Description:</strong> {hero.description}</p>
+                        <p><strong>Pouvoirs:</strong></p>
+>>>>>>> tayvadi
                         <ul>
                             {hero.power.map((power, index) => (
                                 <li key={index}>{power}</li>
                             ))}
                         </ul>
+<<<<<<< HEAD
                         <p><strong>Équipe :</strong> {hero.Team}</p>
                         <p><strong>Ville :</strong> {hero.City}</p>
                         <p><strong>Gadgets :</strong></p>
+=======
+                        <p><strong>Équipe:</strong> {hero.Team}</p>
+                        <p><strong>Ville:</strong> {hero.City}</p>
+                        <p><strong>Gadgets:</strong></p>
+>>>>>>> tayvadi
                         <ul>
                             {hero.gadget.map((weapon, index) => (
                                 <li key={index}>{weapon}</li>
                             ))}
                         </ul>
+<<<<<<< HEAD
                         <p><strong>Véhicule :</strong> {hero.vehicle}</p>
+=======
+                        <p><strong>Véhicule:</strong> {hero.vehicle}</p>
+>>>>>>> tayvadi
                     </div>
                 ))
             ) : (

@@ -17,7 +17,11 @@ function AppContent() {
   const location = useLocation();
 
   return (
+<<<<<<< HEAD
     <>
+=======
+    <div className="App">
+>>>>>>> tayvadi
       {location.pathname !== "/" && (
         <nav>
           <ul>
@@ -28,6 +32,7 @@ function AppContent() {
         </nav>
       )}
 
+<<<<<<< HEAD
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/getHeros" element={<AllHeros />} />
@@ -35,6 +40,17 @@ function AppContent() {
         <Route path="/deleteHeros" element={<DeleteHero />} />
       </Routes>
     </>
+=======
+      <div className="App-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/getHeros" element={<AllHeros />} />
+          <Route path="/addHero" element={<AddHero />} />
+          <Route path="/deleteHeros" element={<DeleteHero />} />
+        </Routes>
+      </div>
+    </div>
+>>>>>>> tayvadi
   );
 }
 

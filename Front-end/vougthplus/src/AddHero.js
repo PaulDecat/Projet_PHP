@@ -208,6 +208,7 @@ export default function AddHero() {
     }, []);
 
     return (
+<<<<<<< HEAD
         <div>
             <h1>Ajouter un Héros :</h1>
             <form onSubmit={handleSubmit}>
@@ -219,10 +220,26 @@ export default function AddHero() {
                     <label htmlFor="hero-sexe">Sexe :</label>
                     <select id="hero-sexe" name="sexe" value={formData.sexe} onChange={handleChange} required>
                         <option value="">Sélectionnez le sexe</option>
+=======
+        <div className="add-hero-container">
+        <h1>Ajouter un Héro 🦸🏻‍♂️🚀</h1>
+        <form className="add-hero-form">
+            <div className="form-grid">
+                <div className="input-group">
+                    <label htmlFor="hero-name">Nom ✍🏼</label>
+                    <input type="text" id="hero-name" name="name" required />
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-sexe">Sexe 👶🏻</label>
+                    <select id="hero-sexe" name="sexe" required>
+                        <option value="">Sélectionnez</option>
+>>>>>>> tayvadi
                         <option value="M">M</option>
                         <option value="F">F</option>
                     </select>
                 </div>
+<<<<<<< HEAD
                 <div>
                     <label htmlFor="hero-planet">Planète :</label>
                     <select id="hero-planet" name="planet" value={formData.planet} onChange={handleChange} required>
@@ -371,4 +388,62 @@ export default function AddHero() {
             )}
         </div>
     );
+=======
+
+                <div className="input-group">
+                    <label htmlFor="hero-planet">Planète 🪐</label>
+                    <select id="hero-planet" name="planet" required>
+                        <option value="">Sélectionnez</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-galaxy">Galaxie ☄️</label>
+                    <input type="text" id="hero-galaxy" name="galaxy" required />
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-description">Description 📋</label>
+                    <textarea id="hero-description" name="description" required></textarea>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-powers">Pouvoir 🏋🏽‍♀️</label>
+                    <select id="hero-powers" name="power" multiple>
+                        <option value="">Sélectionnez</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-city">Ville 🌇</label>
+                    <select id="hero-city" name="city">
+                        <option value="">Sélectionnez</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-gadgets">Gadgets 🧰</label>
+                    <select id="hero-gadgets" name="gadget" multiple>
+                        <option value="">Sélectionnez</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-team">Équipe 👩🏽‍🤝‍👨🏼</label>
+                    <select id="hero-team" name="team">
+                        <option value="">Sélectionnez</option>
+                    </select>
+                </div>
+
+                <div className="input-group">
+                    <label htmlFor="hero-vehicle">Véhicule 🚗</label>
+                    <input type="text" id="hero-vehicle" name="vehicle" />
+                </div>
+            </div>
+
+            <button className="add-button" type="submit">Ajouter ✨</button>
+        </form>
+    </div>
+);
+>>>>>>> tayvadi
 }
