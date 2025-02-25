@@ -3,7 +3,7 @@ import axios from "axios";
 import "./AllHeros.css";
 
 export default function AllHeros() {
-    const [setData] = useState(null);
+    const [data, setData] = useState(null);
     const [filteredData] = useState(null);
 
     useEffect(() => {
@@ -19,8 +19,8 @@ export default function AllHeros() {
     return (
         <div className="container">
             <h1>Tout les héros :</h1>
-            {filteredData ? (
-                filteredData.map((hero) => (
+            {data ? (
+                data.map((hero) => (
                     <div key={hero.id} className="hero-card">
                         <p><strong>Nom :</strong> {hero.name}</p>
                         <p><strong>Sexe :</strong> {hero.sexe}</p>
