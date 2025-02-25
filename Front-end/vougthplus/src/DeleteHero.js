@@ -86,11 +86,11 @@ const modalStyles = {
         alignItems: "center",
     },
     modal: {
-        backgroundColor: "#fff",
         padding: "20px",
         borderRadius: "5px",
         textAlign: "center",
         width: "300px",
+        backgroundColor: "blue",
     },
     button: {
         padding: "10px 20px",
