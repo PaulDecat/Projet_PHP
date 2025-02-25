@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./DeleteHero.css";
 
 export default function DeleteHero() {
     const [data, setData] = useState(null);
@@ -40,11 +41,11 @@ export default function DeleteHero() {
     };
 
     return (
-        <div>
-            <h1>Supprimer un Héros :</h1>
+        <div className="delete-hero-container">
+            <h1>Sélectionnez un héros à supprimer :</h1>
             {data ? (
                 data.map((hero) => (
-                    <div
+                    <div className="input-group"
                         key={hero.id}
                         style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px", cursor: "pointer" }}
                         onClick={() => handleConfirmDelete(hero.id)}

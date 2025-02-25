@@ -1,35 +1,59 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 20px
 }
-
+ 
 /* Main Container */
-.container {
+.delete-hero-container {
     background: #004aad;
-    max-width: 800px;
+    max-width: 700px;
     width: 100%;
-    padding: 30px;
+    padding: 40px;
     border-radius: 12px;
     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
     color: white;
 }
-
+ 
 /* Page Title */
-h1 {
-    color: black;
-    font-size: 2rem;
-    margin-bottom: 20px;
+.delete-hero-container h1 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
     font-weight: bold;
 }
-
+ 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+ 
+.input-group p{
+    width: 100%;
+    max-width: 400px; /* Ensures all inputs have the same width */
+    height: 45px; /* Uniform height for text inputs and selects */
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+    color: black;
+    box-sizing: border-box;
+}
+ 
 /* Hero Card Styling */
 .hero-card {
     background: rgba(255, 255, 255, 0.2);
@@ -41,23 +65,23 @@ h1 {
     cursor: pointer;
     transition: background 0.3s ease;
 }
-
+ 
 .hero-card:hover {
     background: rgba(255, 255, 255, 0.3);
 }
-
+ 
 /* Hero Text */
 .hero-card p {
     margin: 8px 0;
     font-size: 1rem;
     color: white;
 }
-
+ 
 /* Hero Titles */
 .hero-card strong {
     color: #ffcc00;
 }
-
+ 
 /* Modal Styles */
 .modal-overlay {
     position: fixed;
@@ -70,7 +94,7 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-
+ 
 .modal {
     background: white;
     padding: 20px;
@@ -79,18 +103,18 @@ h1 {
     width: 300px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
+ 
 .modal h2 {
     color: #004aad;
     margin-bottom: 15px;
 }
-
+ 
 .modal-buttons {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
 }
-
+ 
 .modal-buttons button {
     padding: 10px 20px;
     border: none;
@@ -99,32 +123,32 @@ h1 {
     font-size: 1rem;
     transition: background 0.3s ease;
 }
-
+ 
 .modal-buttons .confirm {
     background: #d9534f;
     color: white;
 }
-
+ 
 .modal-buttons .confirm:hover {
     background: #c9302c;
 }
-
+ 
 .modal-buttons .cancel {
     background: #5bc0de;
     color: white;
 }
-
+ 
 .modal-buttons .cancel:hover {
     background: #31b0d5;
 }
-
+ 
 /* Responsive */
 @media (max-width: 768px) {
     .container {
         width: 90%;
         padding: 20px;
     }
-    
+   
     .modal {
         width: 90%;
     }

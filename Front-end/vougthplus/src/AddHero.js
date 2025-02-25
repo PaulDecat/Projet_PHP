@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from 'react-modal';
-import "./AddHero.css"; // Assurez-vous d'importer le fichier CSS contenant les styles du modal
-import "./ModalStyles.css"; // Importez les styles personnalisés pour les modals
+import "./AddHero.css"; 
+import "./ModalStyles.css"; 
 
 export default function AddHero() {    
     const [formData, setFormData] = useState({
@@ -77,7 +77,7 @@ export default function AddHero() {
     const handleCities = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/cities");
-            setCities(response.data); // Stocker les villes dans l'état
+            setCities(response.data);
         }
         catch (error) {
             console.error("Erreur lors de la récupération des villes :", error);
@@ -241,7 +241,6 @@ export default function AddHero() {
                     <div className="input-group">
                         <label htmlFor="hero-powers">Pouvoir 🏋🏽‍♀️</label>
                         <select id="hero-powers" name="power" value={formData.power} onChange={handleChange} multiple>
-                            <option value="">Sélectionnez</option>
                             {power.map((p) => (
                                 <option key={p.id} value={p.name}>{p.name}</option>
                             ))}
