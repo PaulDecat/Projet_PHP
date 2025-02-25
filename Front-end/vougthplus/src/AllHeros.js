@@ -4,13 +4,11 @@ import "./AllHeros.css";
 
 export default function AllHeros() {
     const [data, setData] = useState(null);
-    const [filteredData, setFilteredData] = useState(null);
-    const [filter, setFilter] = useState("");
+    const [filteredData] = useState(null);
 
     useEffect(() => {
         axios.get("http://127.0.0.1:8000/api/heroes")
         .then((response) => {
-            console.log("Réponse API :", response.data);
             setData(response.data); 
         })
         .catch((error) => console.error("Erreur API :", error));

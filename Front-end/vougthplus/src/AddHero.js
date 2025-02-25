@@ -53,10 +53,8 @@ export default function AddHero() {
             vehicle: formData.vehicle || "Aucun véhicule", 
         };
         
-        console.log("Données à envoyer :", dataToSend);
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/heroes", dataToSend);
-            console.log("Héros ajouté :", response.data);
             alert("Héros ajouté avec succès !");
             setFormData({
                 name: "",
@@ -79,7 +77,6 @@ export default function AddHero() {
     const handleCities = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/cities");
-            console.log("Villes récupérées :", response.data);
             setCities(response.data); // Stocker les villes dans l'état
         }
         catch (error) {
@@ -90,7 +87,6 @@ export default function AddHero() {
     const handlePlanets = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/planets");
-            console.log("Planètes récupérées :", response.data);
             setPlanets(response.data);
         }
         catch (error) {
@@ -101,7 +97,6 @@ export default function AddHero() {
     const handlePower = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/powers");
-            console.log("Pouvoirs récupérés :", response.data);
             setPower(response.data);
         }
         catch (error) {
@@ -112,7 +107,6 @@ export default function AddHero() {
     const handleTeams = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/teams");
-            console.log("Équipes récupérées :", response.data);
             setTeams(response.data);
         }
         catch (error) {
@@ -123,7 +117,6 @@ export default function AddHero() {
     const handleGadget = async () => {
         try {
             const response = await axios.get("http://127.0.0.1:8000/api/gadgets");
-            console.log("Gadgets récupérés :", response.data);
             setGadget(response.data);
         }
         catch (error) {
@@ -135,7 +128,6 @@ export default function AddHero() {
         event.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/planets", newPlanet);
-            console.log("Planète ajoutée :", response.data);
             setPlanets([...planets, response.data]);
             setShowPlanetModal(false);
             setNewPlanet({ name: "", galaxy: "" });
@@ -149,7 +141,6 @@ export default function AddHero() {
         event.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/cities", newCity);
-            console.log("Ville ajoutée :", response.data);
             setCities([...cities, response.data]);
             setShowCityModal(false);
             setNewCity({ name: "" });
@@ -163,7 +154,6 @@ export default function AddHero() {
         event.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/powers", newPower);
-            console.log("Pouvoir ajouté :", response.data);
             setPower([...power, response.data]);
             setShowPowerModal(false);
             setNewPower({ name: "" });
@@ -177,7 +167,6 @@ export default function AddHero() {
         event.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/gadgets", newGadget);
-            console.log("Gadget ajouté :", response.data);
             setGadget([...gadget, response.data]);
             setShowGadgetModal(false);
             setNewGadget({ name: "" });
@@ -191,7 +180,6 @@ export default function AddHero() {
         event.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/teams", newTeam);
-            console.log("Équipe ajoutée :", response.data);
             setTeams([...teams, response.data]);
             setShowTeamModal(false);
             setNewTeam({ name: "" });
